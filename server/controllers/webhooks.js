@@ -11,6 +11,9 @@ export const clerkWebhooks = async (req, res) => {
             "svix-timestamp" :req.headers["svix-timestamp"],
             "svix-signature" :req.headers["svix-signature"]
         })
+        
+        const {data, type} = req.body
+        
         switch (type) {
             case 'user.created': {
                 const userData = {
@@ -44,7 +47,6 @@ export const clerkWebhooks = async (req, res) => {
                 break;
         }
 
-        const {data, type} = req.body
     } catch (error) {
         res.json({success: false, message: error.message})
     }
